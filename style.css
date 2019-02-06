@@ -1,0 +1,393 @@
+body {
+    margin: 40px;
+}
+
+section {
+    display: inline-block;
+}
+
+
+.red {
+    color: red;
+}
+
+.black {
+    color: black;
+}
+
+.back {
+    padding: 10px;
+    background: repeating-radial-gradient(
+                        circle,
+                        navy,
+                        navy 10px,
+                        blue 10px, 
+                        blue 20px
+                    );
+}
+
+.card {
+    font-size: 36pt;
+    width: 130px;
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid;
+    padding: 10px;
+    display: flex;
+    justify-content:center;
+    position: relative;
+    margin: 10px;
+}
+
+.card div {
+    display: inline-block;
+}
+
+.ace div:first-child {
+    position: absolute;
+    bottom: 90px;
+}
+
+.two div:nth-child(1) {
+    position: absolute;
+    bottom: 10px;
+    transform: rotate(180deg);
+}
+
+.three div:nth-child(1) {
+    position: absolute;
+    bottom: 90px;
+}
+
+.three div:nth-child(2) {
+    position: absolute;
+    bottom: 10px;
+    transform: rotate(180deg);
+}
+
+.four div:first-child {
+    position: absolute;
+    left: 20px;
+}
+
+.four div:nth-child(2) {
+    position: absolute;
+    right: 20px;
+}
+
+.four div:nth-child(3) {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    transform: rotate(180deg);
+}
+
+.four div:nth-child(4) {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    transform: rotate(180deg);
+}
+
+.five div:first-child {
+    position: absolute;
+    left: 20px;
+}
+
+.five div:nth-child(2) {
+    position: absolute;
+    right: 20px;
+}
+
+.five div:nth-child(3) {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    transform: rotate(180deg);
+}
+
+.five div:nth-child(4) {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    transform: rotate(180deg);
+}
+
+.five div:nth-child(5) {
+    position: absolute;
+    bottom: 90px;
+}
+
+.six div:first-child {
+    position: absolute;
+    left: 20px;
+}
+
+.six div:nth-child(2) {
+    position: absolute;
+    bottom: 80px;
+    left: 20px;
+    transform: rotate(180deg);
+}
+
+.six div:nth-child(3) {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    transform: rotate(180deg);
+}
+
+.six div:nth-child(4) {
+    position: absolute;
+    right: 20px;
+}
+
+.six div:nth-child(5) {
+    position: absolute;
+    bottom: 80px;
+    right: 20px;
+    transform: rotate(180deg);
+}
+
+.six div:nth-child(6) {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    transform: rotate(180deg);
+}
+
+.seven div:first-child {
+    position: absolute;
+    left: 20px;
+}
+
+.seven div:nth-child(2) {
+    position: absolute;
+    bottom: 80px;
+    left: 20px;
+    transform: rotate(180deg);
+}
+
+.seven div:nth-child(3) {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    transform: rotate(180deg);
+}
+
+.seven div:nth-child(4) {
+    position: absolute;
+    right: 20px;
+}
+
+.seven div:nth-child(5) {
+    position: absolute;
+    bottom: 80px;
+    right: 20px;
+    transform: rotate(180deg);
+}
+
+.seven div:nth-child(6) {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    transform: rotate(180deg);
+}
+
+.seven div:nth-child(7) {
+    position: absolute;
+    bottom: 80px;
+}
+
+.eight div:first-child {
+    position: absolute;
+    left: 20px;
+}
+
+.eight div:nth-child(2) {
+    position: absolute;
+    bottom: 80px;
+    left: 20px;
+    transform: rotate(180deg);
+}
+
+.eight div:nth-child(3) {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    transform: rotate(180deg);
+}
+
+.eight div:nth-child(4) {
+    position: absolute;
+    right: 20px;
+}
+
+.eight div:nth-child(5) {
+    position: absolute;
+    bottom: 80px;
+    right: 20px;
+    transform: rotate(180deg);
+}
+
+.eight div:nth-child(6) {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    transform: rotate(180deg);
+}
+
+.eight div:nth-child(7) {
+    position: absolute;
+    bottom: 100px;
+}
+
+.eight div:nth-child(8) {
+    position: absolute;
+    bottom: 40px;
+    transform: rotate(180deg);
+}
+
+.nine div:first-child {
+    position: absolute;
+    left: 20px;
+}
+
+.nine div:nth-child(2) {
+    position: absolute;
+    bottom: 110px;
+    left: 20px;
+}
+
+.nine div:nth-child(3) {
+    position: absolute;
+    bottom: 60px;
+    left: 20px;
+    transform: rotate(180deg);
+}
+
+.nine div:nth-child(4) {
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    transform: rotate(180deg);
+}
+
+.nine div:nth-child(5) {
+    position: absolute;
+    right: 20px;
+}
+
+.nine div:nth-child(6) {
+    position: absolute;
+    bottom: 110px;
+    right: 20px;
+}
+
+.nine div:nth-child(7) {
+    position: absolute;
+    bottom: 60px;
+    right: 20px;
+    transform: rotate(180deg);
+}
+
+.nine div:nth-child(8) {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    transform: rotate(180deg);
+}
+
+.nine div:nth-child(9) {
+    position: absolute;
+    bottom: 80px;
+    transform: rotate(180deg);
+}
+
+.ten div:first-child {
+    position: absolute;
+    left: 20px;
+}
+
+.ten div:nth-child(2) {
+    position: absolute;
+    bottom: 110px;
+    left: 20px;
+}
+
+.ten div:nth-child(3) {
+    position: absolute;
+    bottom: 60px;
+    left: 20px;
+    transform: rotate(180deg);
+}
+
+.ten div:nth-child(4) {
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    transform: rotate(180deg);
+}
+
+.ten div:nth-child(5) {
+    position: absolute;
+    right: 20px;
+}
+
+.ten div:nth-child(6) {
+    position: absolute;
+    bottom: 110px;
+    right: 20px;
+}
+
+.ten div:nth-child(7) {
+    position: absolute;
+    bottom: 60px;
+    right: 20px;
+    transform: rotate(180deg);
+}
+
+.ten div:nth-child(8) {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    transform: rotate(180deg);
+}
+
+.ten div:nth-child(9) {
+    position: absolute;
+    bottom: 115px;
+}
+
+.ten div:nth-child(10) {
+    position: absolute;
+    bottom: 40px;
+    transform: rotate(180deg);
+}
+
+.jack div:first-child {
+    position: absolute;
+    left: 20px;
+}
+
+.jack div:first-child:before {
+    content: "J";
+}
+
+.queen div:first-child {
+    position: absolute;
+    left: 20px;
+}
+
+.queen div:first-child:before {
+    content: "Q";
+}
+
+.king div:first-child {
+    position: absolute;
+    left: 20px;
+}
+
+.king div:first-child:before {
+    content: "K";
+}
