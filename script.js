@@ -1,27 +1,26 @@
+import init from "./cards.js";
 
-function makeSuitDom(suitSymbol) {
+function makeCard(suitSymbol, card) {
     const red = {
         "hearts": true,
         "diamonds": true,
         "spades": false,
         "clubs": false
     }[suitSymbol];
-    const suitTemplate = document.querySelector("#suit");
-    const suitDom = suitTemplate.content.cloneNode(true);
-    const list = Array.from(suitDom.children[0].children);
-    list.forEach((card, index) => {
-        const symbols = Array.from(card.children);
-        symbols.forEach(symbol => symbol.innerHTML = "&" + suitSymbol + ";");
-    });
+    const cardTemplate = document.querySelector("#" + card);
+    const cardDom = cardTemplate.content.cloneNode(true);
+    const symbols = Array.from(cardDom.firstElementChild.children);
+    symbols.forEach(symbol => symbol.innerHTML = "&" + suitSymbol + ";");
     const colorClass = red ? "red" : "black";
-    suitDom.children[0].classList.add(colorClass);
-    return suitDom.children[0];
+    cardDom.firstElementChild.classList.add(colorClass);
+    return cardDom;
 }
 
 window.addEventListener("load", evt => {
+    init();
     const section = document.querySelector("section");
-    section.appendChild(makeSuitDom("spades"));
-    section.appendChild(makeSuitDom("hearts"));
-    //const classes = list.map(e => e.classList);
-    //console.log(classes);
+    section.appendChild(makeCard("spades", "ace"));
+    section.appendChild(makeCard("spades", "seven"));
+    section.appendChild(makeCard("spades", "king"));
+    section.appendChild(makeCard("spades", "back"));
 });
