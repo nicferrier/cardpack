@@ -13,14 +13,24 @@ function makeCard(suitSymbol, card) {
     symbols.forEach(symbol => symbol.innerHTML = "&" + suitSymbol + ";");
     const colorClass = red ? "red" : "black";
     cardDom.firstElementChild.classList.add(colorClass);
-    return cardDom;
+    return cardDom.firstElementChild;
 }
 
 window.addEventListener("load", evt => {
     init();
-    const section = document.querySelector("section");
-    section.appendChild(makeCard("spades", "ace"));
-    section.appendChild(makeCard("spades", "seven"));
-    section.appendChild(makeCard("spades", "king"));
-    section.appendChild(makeCard("spades", "back"));
+    const section = document.querySelector("section.deck");
+    const packTop = makeCard("spades", "back");
+    packTop.setAttribute("draggable", "true");
+    packTop.addEventListener("dragstart", evt => {
+        console.log("WHEEE!");
+    });
+    packTop.addEventListener("touchmove", evt => {
+        var touch = evt.targetTouches[0];
+        packTop.style.left = touch.pageX - 250 + 'px';
+        packTop.style.top = touch.pageY - 250 + 'px';
+        evt.preventDefault();
+    });
+    section.appendChild(packTop);
 });
+
+// End
