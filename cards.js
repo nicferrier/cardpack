@@ -1,4 +1,4 @@
-function init() {
+function initCardTemplates() {
     const templates = [`<template id="ace">
   <div class="ace card">
     <div></div>
@@ -120,4 +120,4 @@ function init() {
     });
 }
     
-export default init;
+export default initCardTemplates;

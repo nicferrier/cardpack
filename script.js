@@ -1,4 +1,4 @@
-import init from "./cards.js";
+import initCardTemplates from "./cards.js";
 
 function makeCard(suitSymbol, card) {
     const red = {
@@ -17,19 +17,27 @@ function makeCard(suitSymbol, card) {
 }
 
 window.addEventListener("load", evt => {
-    init();
+    initCardTemplates();
     const section = document.querySelector("section.deck");
     const packTop = makeCard("spades", "back");
     packTop.setAttribute("draggable", "true");
+
+    // not sure if I should drag things
     packTop.addEventListener("dragstart", evt => {
-        console.log("WHEEE!");
-    });
-    packTop.addEventListener("touchmove", evt => {
-        var touch = evt.targetTouches[0];
-        // console.log("touch x,y", touch.pageX, touch.pageY);
+        var touch = evt.target;
         packTop.style.position = "absolute";
         packTop.style.left = touch.pageX - 50 + 'px';
         packTop.style.top = touch.pageY - 50 + 'px';
+        evt.preventDefault();
+    });
+
+    packTop.addEventListener("touchmove", evt => {
+        var touch = evt.targetTouches[0];
+        packTop.style.position = "absolute";
+        const offsetWidth = touch.target.offsetWidth / 2;
+        const offsetHeight = touch.target.offsetHeight / 2;
+        packTop.style.left = (touch.pageX - offsetWidth) + 'px';
+        packTop.style.top = (touch.pageY - offsetHeight) + 'px';
         evt.preventDefault();
     });
     section.appendChild(packTop);
