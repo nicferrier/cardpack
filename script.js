@@ -26,8 +26,10 @@ window.addEventListener("load", evt => {
     });
     packTop.addEventListener("touchmove", evt => {
         var touch = evt.targetTouches[0];
-        packTop.style.left = touch.pageX - 250 + 'px';
-        packTop.style.top = touch.pageY - 250 + 'px';
+        // console.log("touch x,y", touch.pageX, touch.pageY);
+        packTop.style.position = "absolute";
+        packTop.style.left = touch.pageX - 50 + 'px';
+        packTop.style.top = touch.pageY - 50 + 'px';
         evt.preventDefault();
     });
     section.appendChild(packTop);
