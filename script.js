@@ -1,6 +1,6 @@
 import initCardTemplates from "./cards.js";
 
-function makeCard(suitSymbol, card) {
+function makeCard(suitSymbol, card, areaDetect) {
     const red = {
         "hearts": true,
         "diamonds": true,
@@ -21,6 +21,9 @@ function makeCard(suitSymbol, card) {
         const offsetHeight = touch.target.offsetHeight / 2;
         cardElement.style.left = (touch.pageX - offsetWidth) + 'px';
         cardElement.style.top = (touch.pageY - offsetHeight) + 'px';
+        if (typeof(areaDetect) == "function") {
+            areaDetect(cardElement);
+        }
         evt.preventDefault();
     });
     return cardElement;
@@ -28,9 +31,38 @@ function makeCard(suitSymbol, card) {
 
 window.addEventListener("load", evt => {
     initCardTemplates();
+    const dock = document.querySelector(".players .card");
     const section = document.querySelector("section.deck");
-    const packTop = makeCard("spades", "back");
+    const deal = function (card) {
+        const [dockTop, dockLeft, dockBottom, dockRight] = [
+            dock.offsetTop,
+            dock.offsetLeft,
+            dock.offsetTop + dock.offsetHeight,
+            dock.offsetLeft + dock.offsetWidth
+        ];
+        const [cardTop, cardLeft, cardBottom, cardRight] = [
+            card.offsetTop,
+            card.offsetLeft,
+            card.offsetTop + card.offsetHeight,
+            card.offsetLeft + card.offsetWidth
+        ];
+        const isIn = cardTop > dockTop
+              && cardLeft > dockLeft
+              && cardRight > dockRight - (dock.offsetWidth / 2)
+              && cardBottom > dockBottom - (dock.offsetHeight / 2);
+        console.log("is in",
+                    isIn,
+                    cardTop > dockTop,
+                    cardTop, dockTop,
+                    cardLeft > dockLeft,
+                    cardRight > dockRight - (dock.offsetWidth / 2),
+                    cardBottom > dockBottom - (dock.offsetHeight / 2));
+    };
+    const packTop = makeCard("spades", "back", deal);
     const pack = [];
+    const demo = makeCard("spades", "king");
+    demo.style.float = "right";
+    section.appendChild(demo);
     section.appendChild(packTop);
 });
 
