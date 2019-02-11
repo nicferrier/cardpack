@@ -29,34 +29,49 @@ function makeCard(suitSymbol, card, areaDetect) {
     return cardElement;
 }
 
+function size(pxString) {
+    console.log(pxString);
+    const [num] = new RegExp("[0-9]+").exec(pxString);
+    return Number(num);
+}
+
 window.addEventListener("load", evt => {
     initCardTemplates();
     const dock = document.querySelector(".players .card");
     const section = document.querySelector("section.deck");
     const deal = function (card) {
-        const [dockTop, dockLeft, dockBottom, dockRight] = [
-            dock.offsetTop,
-            dock.offsetLeft,
-            dock.offsetTop + dock.offsetHeight,
-            dock.offsetLeft + dock.offsetWidth
+        const {top: dockTop,
+               left: dockLeft,
+               bottom: dockBottom,
+               right: dockRight,
+               width: dockWidth,
+               height: dockHeight} = dock.getBoundingClientRect();
+        const widthThird = (dockWidth / 3);
+        const heightThird = (dockHeight / 3);
+        const heightHalf = (dockHeight / 2);
+        const [boundTop, boundLeft, boundBottom, boundRight] = [
+            dockTop - heightThird,
+            dockLeft - widthThird,
+            dockBottom + heightHalf,
+            dockRight + widthThird
         ];
-        const [cardTop, cardLeft, cardBottom, cardRight] = [
-            card.offsetTop,
-            card.offsetLeft,
-            card.offsetTop + card.offsetHeight,
-            card.offsetLeft + card.offsetWidth
-        ];
-        const isIn = cardTop > dockTop
-              && cardLeft > dockLeft
-              && cardRight > dockRight - (dock.offsetWidth / 2)
-              && cardBottom > dockBottom - (dock.offsetHeight / 2);
-        console.log("is in",
-                    isIn,
-                    cardTop > dockTop,
-                    cardTop, dockTop,
-                    cardLeft > dockLeft,
-                    cardRight > dockRight - (dock.offsetWidth / 2),
-                    cardBottom > dockBottom - (dock.offsetHeight / 2));
+        const {top: cardTop,
+               left: cardLeft,
+               bottom: cardBottom,
+               right: cardRight} = card.getBoundingClientRect();
+        const tooLow = cardTop < boundTop;
+        const tooLeft = cardLeft < boundLeft;
+        const tooHigh = cardBottom > boundBottom;
+        const tooRight = cardRight > boundRight;
+        const isIn = tooLow == false
+              && tooLeft == false
+              && tooHigh == false
+              && tooRight == false;
+        console.log("is in", isIn, dockWidth, dockHeight);
+        console.log(tooLow, tooLeft, tooHigh, tooRight);
+        console.log("dock", dockTop, dockLeft, dockBottom, dockRight);
+        console.log("card", cardTop, cardLeft, cardBottom, cardRight);
+        console.log("bound", boundTop, boundLeft, boundBottom, boundRight);
     };
     const packTop = makeCard("spades", "back", deal);
     const pack = [];
