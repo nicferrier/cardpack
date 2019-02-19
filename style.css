@@ -34,6 +34,9 @@ section {
     display: block;
 }
 
+section.players .card {
+    display: inline-block;
+}
 
 .red {
     color: red;
@@ -65,6 +68,11 @@ section {
     justify-content:center;
     position: relative;
     margin: 10px;
+}
+
+.card::after {
+    content: attr(data-packcount);
+    color: red;
 }
 
 .card div {

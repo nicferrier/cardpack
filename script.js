@@ -35,10 +35,9 @@ function size(pxString) {
     return Number(num);
 }
 
-window.addEventListener("load", evt => {
-    initCardTemplates();
-    const dock = document.querySelector(".players .card");
-    const section = document.querySelector("section.deck");
+// take a touch event target card and a "dock" (a place to send the
+// card) and detect when it sits over it
+function makeDeal() {
     const deal = function (card) {
         const {top: dockTop,
                left: dockLeft,
@@ -67,14 +66,48 @@ window.addEventListener("load", evt => {
               && tooLeft == false
               && tooHigh == false
               && tooRight == false;
-        console.log("is in", isIn, dockWidth, dockHeight);
-        console.log(tooLow, tooLeft, tooHigh, tooRight);
-        console.log("dock", dockTop, dockLeft, dockBottom, dockRight);
-        console.log("card", cardTop, cardLeft, cardBottom, cardRight);
-        console.log("bound", boundTop, boundLeft, boundBottom, boundRight);
+        const debug = false;
+        if (debug) {
+            console.log("is in", isIn, dockWidth, dockHeight);
+            console.log(tooLow, tooLeft, tooHigh, tooRight);
+            console.log("dock", dockTop, dockLeft, dockBottom, dockRight);
+            console.log("card", cardTop, cardLeft, cardBottom, cardRight);
+            console.log("bound", boundTop, boundLeft, boundBottom, boundRight);
+        }
+        if (isIn) {
+            dock.classList.add("facedown");
+            const countAttr = dock.getAttribute("data-packcount");
+            const count = countAttr === undefined ? 0 : Number(countAttr) + 1;
+            dock.setAttribute("data-packcount", count);
+            console.log("dock's pack count", count);
+        }
     };
-    const packTop = makeCard("spades", "back", deal);
+};
+
+// Make a shuffled deck of cards
+function makeDeck() {
+    const suits = ["spades", "clubs", "hearts", "diamonds"];
+    const suitCards = [...Array(13).keys()];
+    const cardHands = suits.map(suit => suitCards.map(card => `${suit}-${card}`));
+    const sortedPack =Array.concat.apply(undefined, cardHands);
+    const pack = [...Array(52).keys()];
+    const deck = pack.map(_ => {
+        const pick = Math.floor(Math.random() * Math.floor(sortedPack.length));
+        const card = sortedPack[pick];
+        sortedPack.splice(pick, 1);
+        return card;
+    });
+    return deck;
+}
+
+window.addEventListener("load", evt => {
+    initCardTemplates();
+    const dock = document.querySelector(".players .card");
+    const section = document.querySelector("section.deck");
+    const deck = makeDeck();
+    const packTop = makeCard("spades", "back");
     const pack = [];
+    packTop.setAttribute("data-packcount", 52);
     const demo = makeCard("spades", "king");
     demo.style.float = "right";
     section.appendChild(demo);
